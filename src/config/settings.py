@@ -17,6 +17,12 @@ class PriorityLevel(str, Enum):
 class ScraperConfig(BaseSettings):
     """Configurações gerais do scraper"""
     
+    model_config = {
+        "env_file": ".env",
+        "extra": "ignore",  # Ignora variáveis de outras classes
+        "case_sensitive": True
+    }
+    
     # Browser settings
     MAX_BROWSERS: int = Field(default=3, ge=1, le=10, description="Máximo de browsers no pool")
     BROWSER_TIMEOUT: int = Field(default=30000, ge=5000, description="Timeout do browser em ms")
@@ -25,8 +31,16 @@ class ScraperConfig(BaseSettings):
     
     # Timing & delays
     MIN_DELAY: float = Field(default=1.0, ge=0.1, description="Delay mínimo entre requisições (s)")
-    MAX_DELAY: float = Field(default=3.0, ge=MIN_DELAY, description="Delay máximo entre requisições (s)")
+    MAX_DELAY: float = Field(default=3.0, ge=0.1, description="Delay máximo entre requisições (s)")
     REQUEST_TIMEOUT: int = Field(default=30, ge=10, description="Timeout de requisição HTTP (s)")
+    
+    @field_validator('MAX_DELAY')
+    @classmethod
+    def validate_max_delay(cls, v, info):
+        # Validação simplificada sem acesso a outros campos
+        if v < 0.1:
+            raise ValueError('MAX_DELAY deve ser >= 0.1')
+        return v
     
     # Pagination
     MAX_PAGES: int = Field(default=5, ge=1, le=20, description="Máximo de páginas por keyword")
@@ -39,10 +53,6 @@ class ScraperConfig(BaseSettings):
     # Screenshot
     ENABLE_SCREENSHOTS: bool = Field(default=False, description="Capturar screenshots de erro")
     SCREENSHOT_DIR: str = Field(default="logs/screenshots", description="Diretório de screenshots")
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
 
 
 class SupabaseConfig(BaseSettings):

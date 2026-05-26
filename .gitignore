@@ -1,43 +1,39 @@
 ```
-# Dependencies
+# Test and coverage files
+src/tests/**
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Python specific
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.env
-.env.local
-.env.*
-
-# Python
 .Python
 *.so
-.Python
 *.egg-info/
 .eggs/
-.mypy_cache/
-.pytest_cache/
-.coverage
-coverage/
 
-# Build and distribution artifacts
-dist/
-build/
-*.egg
-*.whl
-*.zip
-*.tar.gz
+# Logs
+*.log
 
-# Editors and IDEs
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
+# Dependencies
+.venv/
+venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
 ```

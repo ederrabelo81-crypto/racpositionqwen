@@ -8,9 +8,15 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from loguru import logger
 from playwright.async_api import Browser, async_playwright
-from playwright_stealth import stealth_async
+from playwright_stealth.stealth import Stealth
 
 from src.config.settings import get_scraper_config, ScraperConfig
+
+
+async def stealth_async(page, **kwargs):
+    """Wrapper compatível com playwright_stealth"""
+    stealth = Stealth(**kwargs) if kwargs else Stealth()
+    await stealth.apply_stealth_async(page)
 
 
 @dataclass

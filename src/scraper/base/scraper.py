@@ -5,7 +5,7 @@ Define contrato e provê helpers compartilhados.
 from abc import ABC, abstractmethod
 from typing import List, Optional, Dict, Any, AsyncIterator
 from playwright.async_api import async_playwright, Browser, BrowserContext, Page
-from playwright_stealth import stealth_async
+from playwright_stealth.stealth import Stealth
 import asyncio
 import random
 import hashlib
@@ -14,6 +14,12 @@ from loguru import logger
 
 from src.config.settings import get_scraper_config, ScraperConfig
 from src.scraper.base.models import ProductRecord, PlatformType
+
+
+async def stealth_async(page, **kwargs):
+    """Wrapper compatível com playwright_stealth"""
+    stealth = Stealth(**kwargs) if kwargs else Stealth()
+    await stealth.apply_stealth_async(page)
 
 
 class BaseScraper(ABC):
