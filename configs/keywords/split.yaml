@@ -1,0 +1,36 @@
+keywords:
+  - id: ar-condicionado-split
+    term: ar condicionado split
+    priority: alta
+    category: split
+    enabled: true
+    
+  - id: ar-condicionado-split-inverter
+    term: ar condicionado split inverter
+    priority: alta
+    category: split
+    enabled: true
+    
+  - id: ar-condicionado-split-quente-frio
+    term: ar condicionado split quente frio
+    priority: media
+    category: split
+    enabled: true
+    
+  - id: ar-condicionado-split-9000-btus
+    term: ar condicionado split 9000 btus
+    priority: media
+    category: split
+    enabled: true
+    
+  - id: ar-condicionado-split-12000-btus
+    term: ar condicionado split 12000 btus
+    priority: alta
+    category: split
+    enabled: true
+    
+  - id: ar-condicionado-split-18000-btus
+    term: ar condicionado split 18000 btus
+    priority: media
+    category: split
+    enabled: true
